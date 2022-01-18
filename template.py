@@ -1,8 +1,8 @@
 # 1行 1文字 読み取る
-N = int(input())
+n = int(input())
 
 # 1行 複数個 読み取る(それぞれ)
-X, Y, Z = map(int, input().split())
+x, y, z = map(int, input().split())
 
 # 1行 複数個 読み取る(リスト, str)
 str_list = input().split()
@@ -40,12 +40,12 @@ class Combination:
         return self.facts[n] * self.invs[n-r] % mod
 
     def nhr(self, n, r):
-    if n < r:
-        return 0
-    if n < 0 or r < 0:
-        return 0
-    else:
-        return self.ncr(n+r-1, n-1)
+        if n < r:
+            return 0
+        if n < 0 or r < 0:
+            return 0
+        else:
+            return self.ncr(n+r-1, n-1)
 
 # modのncr。上のだと初期化のNが大きい時にきつい。1回だけ求める場合はこの方が速い。
 mod = 998244353
