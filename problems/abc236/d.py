@@ -22,9 +22,7 @@ def dfs(i, s):
     for k in range(2 * N):
         if not used[k]:
             used[k] = True
-            x = min(j, k)
-            y = max(j, k)
-            dfs(i + 1, s ^ A[x][y - x - 1])
+            dfs(i + 1, s ^ A[j][k - j - 1])
             used[k] = False
 
     used[j] = False
