@@ -15,14 +15,14 @@ mod = 998244353
 
 class Combination:
     def __init__(self, n):
-        self.facts = [1 for i in range(n+1)]
-        self.invs = [1 for i in range(n+1)]
+        self.facts = [1 for i in range(n + 1)]
+        self.invs = [1 for i in range(n + 1)]
 
-        for i in range(1, n+1):
-            self.facts[i] = self.facts[i-1] * i % mod
-        self.invs[n] = pow(self.facts[n], mod-2, mod)
-        for i in range(1, n+1):
-            self.invs[n-i] = self.invs[n-i+1] * (n-i+1) % mod
+        for i in range(1, n + 1):
+            self.facts[i] = self.facts[i - 1] * i % mod
+        self.invs[n] = pow(self.facts[n], mod - 2, mod)
+        for i in range(1, n + 1):
+            self.invs[n - i] = self.invs[n - i + 1] * (n - i + 1) % mod
 
     def ncr(self, n, r):
         if n < r:
@@ -30,14 +30,14 @@ class Combination:
         if n < 0 or r < 0:
             return 0
         else:
-            return self.facts[n] * self.invs[r] * self.invs[n-r] % mod
+            return self.facts[n] * self.invs[r] * self.invs[n - r] % mod
 
     def npr(self, n, r):
         if n < r:
             return 0
         if n < 0 or r < 0:
             return 0
-        return self.facts[n] * self.invs[n-r] % mod
+        return self.facts[n] * self.invs[n - r] % mod
 
     def nhr(self, n, r):
         if n < r:
@@ -45,25 +45,25 @@ class Combination:
         if n < 0 or r < 0:
             return 0
         else:
-            return self.ncr(n+r-1, n-1)
+            return self.ncr(n + r - 1, n - 1)
 
 # modのncr。上のだと初期化のNが大きい時にきつい。1回だけ求める場合はこの方が速い。
 mod = 998244353
 
 def ncr(n, r, mod):
-    r = min(r, n-r)
+    r = min(r, n - r)
     x, y = 1, 1
     for i in range(r):
-        x = (x * (n-i)) % mod
-        y = (y * (i+1)) % mod
+        x = (x * (n - i)) % mod
+        y = (y * (i + 1)) % mod
     
-    return x * pow(y, mod-2, mod) % mod
+    return x * pow(y, mod - 2, mod) % mod
 
 
 # 素因数分解(試し割り法) → 事前に素数テーブル作った方が速い
 def prime_decompose(x):
     decomposed = []
-    for i in range(2,int(pow(x,0.5))+1):
+    for i in range(2,int(pow(x, 0.5))+1):
         while x % i == 0:
             x //= i
             decomposed.append(i)
@@ -74,11 +74,11 @@ def prime_decompose(x):
 # 約数列挙
 def get_divisor(x):
     divisor = []
-    for i in range(1,int(pow(x,0.5))+1):
+    for i in range(1,int(pow(x, 0.5))+1):
         if x % i == 0:
             divisor.append(i)
             if i != x//i:
-                divisor.append(x//i)
+                divisor.append(x // i)
 
     return divisor
 
@@ -89,10 +89,10 @@ def make_prime(n):
     is_prime[2] = True
     for i in range(3, n, 2):
         is_prime[i] = True
-    m = int(n**0.5) + 1
+    m = int(n ** 0.5) + 1
     for p in range(3, m, 2):
         if is_prime[p]:
-            for q in range(p*p, n, p+p):
+            for q in range(p * p, n, p + p):
                 is_prime[q] = False
 
     ret = []
@@ -106,7 +106,6 @@ def make_prime(n):
 def lis(S):
     from bisect import bisect_left
     L = [S[0]]
-
     for s in S[1:]:
         if s > L[-1]:
             L.append(s)
@@ -118,7 +117,6 @@ def lis(S):
 def lis2(S):
     from bisect import bisect_right
     L = [S[0]]
-
     for s in S[1:]:
         if s >= L[-1]:
             L.append(s)
