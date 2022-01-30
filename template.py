@@ -126,7 +126,7 @@ def lis2(S):
             L[bisect_right(L, s)] = s
     return len(L) 
 
-# ダイクストラ（G が隣接リスト + 重み、s がスタートのノード）
+# ダイクストラ
 def dij(G, s):
     """Dijkstra's algorithm
     Args:
