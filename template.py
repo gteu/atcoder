@@ -15,8 +15,8 @@ mod = 998244353
 
 class Combination:
     def __init__(self, n):
-        self.facts = [1 for i in range(n + 1)]
-        self.invs = [1 for i in range(n + 1)]
+        self.facts = [1 for _ in range(n + 1)]
+        self.invs = [1 for _ in range(n + 1)]
 
         for i in range(1, n + 1):
             self.facts[i] = self.facts[i - 1] * i % mod
@@ -63,7 +63,7 @@ def ncr(n, r, mod):
 # 素因数分解(試し割り法) → 事前に素数テーブル作った方が速い
 def prime_decompose(x):
     decomposed = []
-    for i in range(2,int(pow(x, 0.5))+1):
+    for i in range(2, int(pow(x, 0.5)) + 1):
         while x % i == 0:
             x //= i
             decomposed.append(i)
@@ -74,7 +74,7 @@ def prime_decompose(x):
 # 約数列挙
 def get_divisor(x):
     divisor = []
-    for i in range(1,int(pow(x, 0.5))+1):
+    for i in range(1, int(pow(x, 0.5)) + 1):
         if x % i == 0:
             divisor.append(i)
             if i != x//i:
