@@ -1,5 +1,5 @@
 # 1行 1文字 読み取る
-n = int(input())
+N = int(input())
 
 # 1行 複数個 読み取る(それぞれ)
 x, y, z = map(int, input().split())
@@ -124,4 +124,31 @@ def lis2(S):
             L.append(s)
         else:
             L[bisect_right(L, s)] = s
-    return len(L)
+    return len(L) 
+
+# ダイクストラ（G が隣接リスト + 重み、s がスタートのノード）
+def dij(G, s):
+    """Dijkstra's algorithm
+    Args:
+        G (List[List[int, int]]): [adjacent node, weight] 
+        s (int): starting index
+
+    Returns:
+        d (List[int]): distances
+    """
+    from heapq import heappush, heappop
+
+    INF = 10 ** 18
+    d = [INF] * len(G)
+    d[s] = 0
+    q = [(0, s)]
+    while q:
+        cur_d, cur_i = heappop(q)
+        if cur_d > d[cur_i]:
+            continue
+        for nxt_i, w in G[cur_i]:
+            nxt_d = cur_d + w
+            if d[nxt_i] > nxt_d:
+                d[nxt_i] = nxt_d
+                heappush(q, (nxt_d, nxt_i))
+    return d
