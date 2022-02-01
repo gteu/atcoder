@@ -1,20 +1,19 @@
 from bisect import bisect_left
 
-n = int(input())
+N = int(input())
 A = []
-s = set()
-for _ in range(n):
+T = []
+for _ in range(N):
     x, y = map(int, input().split())
-    s.add(x)
-    s.add(y)
-    A.append((x, y))
-s = sorted(list(s))
+    T.append((x, 1))
+    T.append((x + y, -1))
+T.sort()
 
-comp_A = []
-for x, y in A:
-    comp_x = bisect_left(s, x)
-    comp_y = bisect_left(s, y)
-    comp_A.append((comp_x, comp_y))
+ans = [0] * (N + 1)
+pre, person = 0, 0
+for cur, count in T:
+    ans[person] += (cur - pre)
+    pre = cur
+    person += count
 
-login = [0] * len(comp_A)
-
+print(*ans[1:])
