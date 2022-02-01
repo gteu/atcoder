@@ -1,3 +1,10 @@
+# Yes
+def yes(bool):
+    if bool:
+        print("Yes")
+    else:
+        print("No")
+
 # 1行 1文字 読み取る
 N = int(input())
 
