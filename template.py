@@ -20,6 +20,10 @@ int_list = list(map(int, input().split()))
 # modの組み合わせ。ncrを何回も計算する場合は一回初期化するこれの方が速い。
 mod = 998244353
 
+# 再帰の深さ制限
+import sys
+sys.setrecursionlimit(300000)
+
 class Combination:
     def __init__(self, n):
         self.facts = [1 for _ in range(n + 1)]
