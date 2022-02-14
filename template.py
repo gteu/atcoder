@@ -17,12 +17,18 @@ str_list = input().split()
 # 1行 複数個 読み取る(リスト, int)
 int_list = list(map(int, input().split()))
 
-# modの組み合わせ。ncrを何回も計算する場合は一回初期化するこれの方が速い。
-mod = 998244353
-
 # 再帰の深さ制限
 import sys
 sys.setrecursionlimit(300000)
+
+# bit 全探索の型
+for i in range(2 ** N):
+    for j in range(N):
+        if i >> j & 1:
+            # 処理内容
+
+# modの組み合わせ。ncrを何回も計算する場合は一回初期化するこれの方が速い。
+mod = 998244353
 
 class Combination:
     def __init__(self, n):
