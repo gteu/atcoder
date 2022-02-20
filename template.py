@@ -21,6 +21,10 @@ int_list = list(map(int, input().split()))
 import sys
 sys.setrecursionlimit(300000)
 
+# PyPy で再帰速くなるやつ
+import pypyjit
+pypyjit.set_param('max_unroll_recursion=-1')
+
 # bit 全探索の型
 for i in range(2 ** N):
     for j in range(N):
