@@ -6,11 +6,7 @@ if len(s) <= 2:
 else:
     for i in range(0, 1000, 8):
         ct_tmp = Counter(str(i).zfill(3))
-        flag = True
-        for k, v in ct_tmp.items():
-            if ct_tmp[k] > ct[k]:
-                flag = False
-        if flag:
+        if all([ct_tmp[k] <= ct[k] for k in ct_tmp.keys()]):
             print('Yes')
             exit()
     print('No')
