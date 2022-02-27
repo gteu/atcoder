@@ -9,10 +9,10 @@ while cur < K:
     cur += 1
     can += A[can % N]
     if count[can % N][1] != -1 and not flag:
-        can += ((K - count[can % N][1]) // (cur - count[can %
-                N][1]) - 1) * (can - count[can % N][0])
-        cur += ((K - count[can % N][1]) // (cur -
-                count[can % N][1]) - 1) * (cur - count[can % N][1])
+        can += ((K - cur) // (cur - count[can %
+                N][1])) * (can - count[can % N][0])
+        cur += ((K - cur) // (cur - count[can %
+                N][1])) * (cur - count[can % N][1])
         flag = True
     count[can % N] = [can, cur]
 
