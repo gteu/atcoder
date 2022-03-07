@@ -1,29 +1,19 @@
-# Yes
-def yes(bool):
-    if bool:
-        print("Yes")
-    else:
-        print("No")
-
-# 1行 1文字 読み取る
+# 入力系
 N = int(input())
-
-# 1行 複数個 読み取る(それぞれ)
 x, y, z = map(int, input().split())
-
-# 1行 複数個 読み取る(リスト, str)
 str_list = input().split()
-
-# 1行 複数個 読み取る(リスト, int)
 int_list = list(map(int, input().split()))
+
 
 # 再帰の深さ制限
 import sys
 sys.setrecursionlimit(300000)
 
+
 # PyPy で再帰速くなるやつ
 import pypyjit
 pypyjit.set_param('max_unroll_recursion=-1')
+
 
 # bit 全探索の型
 for i in range(2 ** N):
@@ -31,9 +21,9 @@ for i in range(2 ** N):
         if i >> j & 1:
             # 処理内容
 
+
 # modの組み合わせ。ncrを何回も計算する場合は一回初期化するこれの方が速い。
 mod = 998244353
-
 class Combination:
     def __init__(self, n):
         self.facts = [1 for _ in range(n + 1)]
@@ -68,9 +58,9 @@ class Combination:
         else:
             return self.ncr(n + r - 1, n - 1)
 
+
 # modのncr。上のだと初期化のNが大きい時にきつい。1回だけ求める場合はこの方が速い。
 mod = 998244353
-
 def ncr(n, r, mod):
     r = min(r, n - r)
     x, y = 1, 1
@@ -91,6 +81,7 @@ def prime_decompose(x):
     if x > 1:
         decomposed.append(x)
     return decomposed
+
 
 # 素因数分解(エラトステネスの篩) → 事前に次に割る素数を求めてるので速い
 # ABC177-E の解説を参考にして実装
@@ -125,6 +116,7 @@ def get_divisor(x):
 
     return divisor
 
+
 # 素数列挙(エラトステネスの篩)
 def make_prime(n):
     # n未満の素数を返す
@@ -145,6 +137,7 @@ def make_prime(n):
 
     return ret
 
+
 # LIS(Longest Increasing Subsequence) (狭義単調増加の場合)
 def lis(S):
     from bisect import bisect_left
@@ -156,6 +149,7 @@ def lis(S):
             L[bisect_left(L, s)] = s
     return len(L)
 
+
 # LIS(Longest Increasing Subsequence) (広義単調増加の場合)
 def lis2(S):
     from bisect import bisect_right
@@ -166,6 +160,7 @@ def lis2(S):
         else:
             L[bisect_right(L, s)] = s
     return len(L) 
+
 
 # ダイクストラ
 def dij(G, s):
