@@ -92,6 +92,28 @@ def prime_decompose(x):
         decomposed.append(x)
     return decomposed
 
+# 素因数分解(エラトステネスの篩) → 事前に次に割る素数を求めてるので速い
+# ABC177-E の解説を参考にして実装
+class PrimeDecomposer:
+    def __init__(self, n):
+        self.d = [i for i in range(n)]
+        m = int(n ** 0.5) + 1
+        for q in range(2 * 2, n, 2):
+            self.d[q] = 2
+        for p in range(3, m, 2):
+            if self.d[p] == p:
+                for q in range(p * p, n, p + p):
+                    if self.d[q] == q:
+                        self.d[q] = p
+
+    def decompose(self, x):
+        decomposed = []
+        while x != 1:
+            decomposed.append(self.d[x])
+            x //= self.d[x]
+        return decomposed
+
+
 # 約数列挙
 def get_divisor(x):
     divisor = []
