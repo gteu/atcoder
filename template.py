@@ -1,6 +1,6 @@
 # 入力系
-N = int(input())
-x, y, z = map(int, input().split())
+int(input())
+map(int, input().split())
 input().split()
 list(map(int, input().split()))
 tuple(map(int, input().split()))
