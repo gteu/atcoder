@@ -188,3 +188,10 @@ def dij(G, s):
                 d[nxt_i] = nxt_d
                 heappush(q, (nxt_d, nxt_i))
     return d
+
+# ランレングス圧縮
+S = '00010011100'
+from itertools import groupby
+rle = []
+for k, v in groupby(S):
+    rle.append((k, len(list(v))))
