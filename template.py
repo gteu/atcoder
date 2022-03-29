@@ -5,6 +5,10 @@ input().split()
 list(map(int, input().split()))
 tuple(map(int, input().split()))
 
+# 入力の高速化
+import sys
+input = sys.stdin.readline
+
 # 再帰の深さ制限
 import sys
 sys.setrecursionlimit(300000)
