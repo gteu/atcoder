@@ -1,0 +1,9 @@
+N = int(input())
+S = list(map(int, input().split()))
+T = list(map(int, input().split()))
+
+INF = 10 ** 20
+ans = [INF] * N
+for i in range(2 * N):
+    ans[(i + 1) % N] = min(ans[i % N] + S[i % N], T[(i + 1) % N])
+print(*ans, sep='\n')
