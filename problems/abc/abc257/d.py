@@ -20,8 +20,6 @@ for i in range(N):
 for k in range(N):
     for i in range(N):
         for j in range(N):
-            if i == k or j == k or i == j:
-                continue
             D[i][j] = min(max(D[i][k], D[k][j]), D[i][j])
 
 ans = 10 ** 10
